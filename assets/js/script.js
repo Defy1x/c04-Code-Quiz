@@ -5,6 +5,7 @@ var restartBtn = document.getElementById("restartGame");
 var submitBtn = document.getElementById("submitBtn")
 var backMainBtn = document.getElementById("backMain");
 var welcomeText = document.getElementById("welcome-block");
+var timerDisplay = document.getElementById("timer");
 var highScoreLeaders = document.getElementById("highScoreTable");
 var welcomeSection = document.getElementById("welcome");
 var quizSection = document.getElementById("quiz");
@@ -172,7 +173,7 @@ function addScore() {
     };
     // check if there are scores in local storage first and take value
     //if not, make a blank array
-    var quizScore = localStorage.getItem("quizScore")
+    var quizScore = localStorage.getItem("quizScore");
 
     //New score bigger than previous
     if (quizScore) {
@@ -209,6 +210,8 @@ function viewLeaderboard(){
   leaderboard.style.display="block";
   timerElement.style.display="none";
   welcomeText.style.display="block";
+  highScoresBtn.style.display="none";
+  timerDisplay.style.display="none";
 };
 
 function reload(){
