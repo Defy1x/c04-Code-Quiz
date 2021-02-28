@@ -164,6 +164,8 @@ function addScore() {
     userNameInput = document.getElementById("initials").value
     welcomeSection.style.display ="none";
     leaderboard.style.display="block";
+    highScoresBtn.style.display="none";
+    timerDisplay.style.display="none";
     gameOverSection.style.display ="none";
 
     // create a new object with name and score keys
