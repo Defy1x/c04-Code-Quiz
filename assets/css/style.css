@@ -173,6 +173,10 @@ header h1 {
   font-size: 20px;
 }
 
+#highScoreTable li{
+  padding-bottom: 10px;
+}
+
 #initials{
   height: 30px;
 }

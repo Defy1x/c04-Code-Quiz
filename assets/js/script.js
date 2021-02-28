@@ -183,8 +183,7 @@ function addScore() {
 
     // updates the file
     localStorage.setItem("quizScoreLS", JSON.stringify(quizScore));
-    // //pulls the new object
-    // var quizScore = JSON.parse(localStorage.getItem("quizScoreLS"));
+
     viewLeaderboardOnClick();
 };
 
@@ -197,9 +196,13 @@ function grabDataforLeaderBoard(){
   }
   else if (leaders){
      leaders.sort((a, b) => b.score - a.score);
-           for (var i = 0; (i < 1); i++) {
-               highScoreTable.textContent = leaders[i].name + ' : ' + leaders[i].score;
-           }
+     //    for (var i = 0; i < leaders.length; i++){
+     //        highScoreTable.innerHTML = "<li>" + leaders[i].name + " : " + leaders[i].score + "</li>";
+     for (var i = 0; (i < leaders.length) && (i < 10); i++) {
+      var list = document.createElement('li');
+      list.textContent = leaders[i].name + " : " + leaders[i].score;
+      highScoreLeaders.appendChild(list);
+      }
       console.log("i hope this works!")
   }
   console.log(leaders);
@@ -223,10 +226,6 @@ function grabDataforLeaderBoard(){
 //     liMaker(quizScore);
 //   });
 // }
-
-// for (var i = 0; (i < 1); i++) {
-//        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
-//    }
 
 //removes other sections from showing on init
 function init(){
