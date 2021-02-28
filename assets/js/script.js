@@ -24,8 +24,11 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
+var highScoresArray = JSON.parse(localStorage.getItem("quizScore"))|| [] ;
+// var highScoresArray;
 var userNameInput;
-var score = 0
+var score = 0;
+var highScore = 0;
 var secondsLeft;
 var questionNumber = -1;
 var secondsLeft = 0;
@@ -156,6 +159,14 @@ function showScores() {
     result.textContent = " " + quiz.score + " out of 5 correct";
 };
 
+var liMaker = function(text) {
+    console.log(text)
+    var li = document.createElement("li");
+    li.textContent = text.user + " " + text.score + "%";
+    highScoreLeaders.appendChild(li);
+    console.log("test");
+};
+
 function addScore() {
     userNameInput = document.getElementById("initials").value
     welcomeSection.style.display ="none";
@@ -164,31 +175,20 @@ function addScore() {
     timerDisplay.style.display="none";
     gameOverSection.style.display ="none";
 
-    console.log(userNameInput);
-
+    console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
     var newScore = {
         name: userNameInput,
         score: quiz.score
     };
+    console.log(newScore.score + " is the new users score")
+
     // check if there are scores in local storage first and take value
-    //if not, make a blank array
     var quizScore = localStorage.getItem("quizScore");
 
-    //New score bigger than previous
-    if (quizScore) {
-        var highScore = JSON.parse(quizScore).score;
-        if (score < highScore) {
-            return
-        }
-    }
     localStorage.setItem("quizScore", JSON.stringify(newScore));
 };
 
-function getHighScores(){
-  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
-  console.log("test");
-}
 
 //removes other sections from showing
 function init(){
@@ -197,7 +197,6 @@ function init(){
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
   leaderboard.style.display="none";
-
 };
 
 //function to start quiz and start timer
@@ -221,6 +220,7 @@ function viewLeaderboard(){
   timerDisplay.style.display="none";
   var quizScore = JSON.parse(localStorage.getItem("quizScore"));
   highScoreTable.textContent = quizScore.name + ":" + quizScore.score;
+  console.log(quizScore.score + "is the score in the leaderboard view");
 };
 
 //reloads the webpage on save
@@ -228,9 +228,11 @@ function reload(){
   location.reload();
 };
 
+//resets the form and makes it empty
 function resetForm() {
   document.getElementById("userForm").reset();
 }
+
 //
 startBtn.addEventListener("click", startGame);
 highScoresBtn.addEventListener("click", viewLeaderboard);
@@ -241,7 +243,9 @@ submitBtn.addEventListener("click", function (event) {
     addScore();
     resetForm();
     var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+    console.log(quizScore.score + " is the score that will get added to the button on submit");
     highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
+    console.log(highScoresArray + "this is a test");
 });
 
 //load first page and hide other sections
