@@ -219,7 +219,8 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
-  getHighScores();
+  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+  highScoreTable.textContent = quizScore.name + ":" + quizScore.score;
 };
 
 //reloads the webpage on save
