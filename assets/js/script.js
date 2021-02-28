@@ -32,7 +32,7 @@ var questions = [
     new Question("Hyper Text Markup Language Stand For?", ["JavaScript", "XHTML","CSS", "HTML"], "HTML"),
     new Question("Which language is used for styling web pages?", ["HTML", "JQuery", "CSS", "XML"], "CSS"),
     new Question("Which is not a JavaScript Framework?", ["React", "JQuery","Django", "NodeJS"], "Django"),
-    new Question("Which of the following is a Database?", ["SQL", "HTML", "JS", "All"], "PHP"),
+    new Question("Which of the following is a Database?", ["SQL", "HTML", "JS", "All"], "SQL"),
     new Question("Which event occurs when the user clicks on an HTML element?", ["onclick", "onmouseclick", "onchange", "onmouseover"], "onclick")
 ];
 
