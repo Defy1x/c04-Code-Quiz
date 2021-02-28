@@ -35,7 +35,7 @@ var secondsLeft = 0;
 // var userScoreElement = document.getElementById("user-score");
 // var userNameInput;
 
-console.log(quizScore);
+// console.log(quizScore);
 
 var questions = [
     new Question("Hyper Text Markup Language Stand For?", ["JavaScript", "XHTML","CSS", "HTML"], "HTML"),
@@ -178,19 +178,19 @@ function addScore() {
         name: userNameInput,
         score: quiz.score
     };
-    console.log(newScore.score + " is the new users score")
+    console.log(newScore.name + " is the users name " + newScore.score + " is the new users score" )
 
+
+    var quizScore = localStorage.getItem("quizScore")
+    // //gets the json file
+    // var quizScore = JSON.parse(localStorage.getItem("quizScore"));
     localStorage.setItem("quizScore", JSON.stringify(newScore));
-
-    //gets the json file
-    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
-
     // calls the leaderboard functionality
     viewLeaderboard();
     //
 };
 
-//removes other sections from showing on ititialization
+//removes other sections from showing on init
 function init(){
   welcomeSection.style.display ="block";
   welcomeText.style.display="block";
@@ -217,10 +217,8 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
-  // for (var i = 0; (i < 1); i++) {
-  //        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
-  //    }
-  highScoreTable.textContent = quizScore.name + ":" + quizScore.score;
+  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+  highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
   console.log(quizScore.score + " is the score in the leaderboard view");
 };
 
@@ -247,3 +245,8 @@ submitBtn.addEventListener("click", function (event) {
 
 //load first page and hide other sections
 init();
+
+
+// for (var i = 0; (i < 1); i++) {
+//        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
+//    }
