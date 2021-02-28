@@ -159,12 +159,15 @@ function showScores() {
 
 
 function addScore() {
-    userNameInput = document.getElementById("initials").value
+
 
     if (initials.value === ""){
     var anonymousAnimals = ["Aardvark", "Beaver", "Bunny", "Chinchilla", "Cat", "Giraffe", "Lion", "Moose", "Otter", "Porcupine", "Raccoon", "Squirrel", "Sheep", "Woodchuck", "Zebra"]
     userNameInput = "Happy " + anonymousAnimals[Math.floor(Math.random()*anonymousAnimals.length)];
   }
+    else {
+        userNameInput = document.getElementById("initials").value
+    }
 
     console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
@@ -206,6 +209,9 @@ function addScore() {
 //   });
 // }
 
+// for (var i = 0; (i < 1); i++) {
+//        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
+//    }
 
 //removes other sections from showing on init
 function init(){
@@ -224,7 +230,6 @@ function startGame(){
   setTimer();
 };
 
-//function to viewleaderboard and hide everything else
 //function to viewleaderboard and hide everything else
 function viewLeaderboard(){
   welcomeSection.style.display ="none";
@@ -263,8 +268,3 @@ submitBtn.addEventListener("click", function (event) {
 
 //load first page and hide other sections
 init();
-
-
-// for (var i = 0; (i < 1); i++) {
-//        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
-//    }
