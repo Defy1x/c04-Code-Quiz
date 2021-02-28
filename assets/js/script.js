@@ -153,6 +153,7 @@ function showProgress() {
 function showScores() {
     gameOverSection.style.display ="block";
     quizSection.style.display ="none";
+    countdown.style.display ="none";
     result.textContent = " " + quiz.score + " out of 5 answers correct";
 };
 
