@@ -134,14 +134,12 @@ function guess(id, guess) {
 
 //function when answer is right
 function showAnswerRight(){
-  console.log("the answer is right");
-  answer.textContent = "Right!"
+  answer.textContent = "You got the right answer!"
 };
 
 //function when answer is wrong
 function showAnswerWrong(){
-  console.log("the answer is wrong bitch");
-  answer.textContent = "Wrong!"
+  answer.textContent = "Sorry that's the wrong answer!"
 }
 
 //function that displays current area of question
@@ -154,7 +152,7 @@ function showProgress() {
 function showScores() {
     gameOverSection.style.display ="block";
     quizSection.style.display ="none";
-    result.textContent = " " + quiz.score + " out of 5";
+    result.textContent = " " + quiz.score + " out of 5 answers correct";
 };
 
 function addScore() {
