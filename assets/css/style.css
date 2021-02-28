@@ -102,8 +102,55 @@ header h1 {
 
 #highScore{
   float: left;
+  background-color: purple;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  color: #FFF;
+  border: 1px solid #1D3C6A;
 }
 
+#startBtn{
+  float: left;
+  background-color: #98FB98;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #1D3C6A;
+}
+
+#backMain{
+  background-color: #98FB98;
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #1D3C6A;
+  text-align: center;
+}
+
+#submitBtn{
+  background-color: #98FB98;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #1D3C6A;
+  text-align: center;
+}
+
+#restartGame{
+  background-color: purple;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  color: #FFF;
+  border: 1px solid #1D3C6A;
+}
+
+
 #timer{
+  padding-top: 7px;
   float:right;
 }
