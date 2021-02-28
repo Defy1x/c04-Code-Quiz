@@ -24,7 +24,7 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
-var quizScore = [];
+var quizScore = JSON.parse(localStorage.getItem("quizScoreLS")) || [];
 var userNameInput;
 var highScoresArray;
 var score = 0;
@@ -160,7 +160,7 @@ function showScores() {
 
 function addScore() {
   // //gets the json file
-  var quizScore = localStorage.getItem("quizScore");
+  quizScore = JSON.parse(localStorage.getItem("quizScoreLS")) || [];
 
     if (initials.value === ""){
     var anonymousAnimals = ["Aardvark", "Beaver", "Bunny", "Chinchilla", "Cat", "Giraffe", "Lion", "Moose", "Otter", "Porcupine", "Raccoon", "Squirrel", "Sheep", "Woodchuck", "Zebra"]
@@ -169,32 +169,42 @@ function addScore() {
     else {
         userNameInput = document.getElementById("initials").value
     }
+    let score = quiz.score
 
     console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
     var newScore = {
         name: userNameInput,
-        score: quiz.score
+        score: score,
     };
     console.log(newScore.name + " is the users name " + newScore.score + " is the new users score" )
 
-    // quizScore.push(newScore);
-
-    // //gets the json file
-    var quizScore = localStorage.getItem("quizScore")
-
+     quizScore.push(newScore);
 
     // updates the file
-    localStorage.setItem("quizScore", JSON.stringify(newScore));
+    localStorage.setItem("quizScoreLS", JSON.stringify(quizScore));
     //pulls the new object
-    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+    var quizScore = JSON.parse(localStorage.getItem("quizScoreLS"));
 
     console.log(quizScore);
 
-    // calls the leaderboard functionality
-    viewLeaderboard();
-    //
+    viewLeaderboardOnEndClick();
 };
+
+function grabDataforLeaderBoard(){
+  var leaders = JSON.parse(localStorage.getItem("quizScore"));
+  console.log(quizScore);
+  if(leaders === null){
+    highScoreTable.textContent = "There are no leaders yet, play some games! ";
+    return;
+  }
+   else if (true){
+    highScoreTable.textContent = leaders.name + " : " + leaders.score;
+    console.log("i am trying to write this score")
+  }
+  console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
+}
+
 
 // var liMaker = function(text) {
 //     var quizScore= JSON.parse(localStorage.getItem("quizScore"));
@@ -236,7 +246,7 @@ function startGame(){
 };
 
 //function to viewleaderboard and hide everything else
-function viewLeaderboard(){
+function viewLeaderboardOnMenuClick(){
   welcomeSection.style.display ="none";
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
@@ -245,18 +255,19 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
-  var leaders = JSON.parse(localStorage.getItem("quizScore"));
-  if(leaders === null){
-    highScoreTable.textContent = "There are no leaders yet, play some games! ";
-    return;
-  }
-  else if (true) {
-    highScoreTable.textContent = leaders.name + " : " + leaders.score;
-  }
-
-  console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
-
+  grabDataforLeaderBoard();
 };
+
+function viewLeaderboardOnEndClick(){
+  welcomeSection.style.display ="none";
+  quizSection.style.display ="none";
+  gameOverSection.style.display ="none";
+  leaderboard.style.display="block";
+  timerElement.style.display="none";
+  welcomeText.style.display="block";
+  highScoresBtn.style.display="none";
+  timerDisplay.style.display="none";
+}
 
 //reloads the webpage on save
 function reload(){
@@ -270,7 +281,7 @@ function resetForm() {
 
 //add event listeners here
 startBtn.addEventListener("click", startGame);
-highScoresBtn.addEventListener("click", viewLeaderboard);
+highScoresBtn.addEventListener("click", viewLeaderboardOnMenuClick);
 restartBtn.addEventListener("click", reload);
 backMainBtn.addEventListener("click",reload);
 submitBtn.addEventListener("click", function (event) {
