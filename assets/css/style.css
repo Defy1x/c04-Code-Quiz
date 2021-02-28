@@ -84,6 +84,7 @@ p{
     font-size: 18px;
 }
 #answer{
+  color: #d143c9;
   padding-top: 20px;
   font-size: 18px;
 }
@@ -91,7 +92,7 @@ p{
 #end{
   font size: 20px;
   text-align: center;
-  color: #52ae65;
+  color: #d143c9;
 }
 
 #result{
@@ -175,4 +176,23 @@ header h1 {
 
 #initials{
   height: 30px;
+}
+
+@media (max-width: 550px) {
+  .container{
+    width: 400px;
+  }
+  h1{
+    font-size: 26px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+  }
+  h2{
+    text-align: left;
+    font-size: 20px;
+  }
+  #initials{
+    margin-bottom: 30px;
+  }
 }
