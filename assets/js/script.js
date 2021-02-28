@@ -1,4 +1,4 @@
-// create questions here
+// create variables here
 var startBtn = document.getElementById("startBtn");
 var highScoresBtn = document.getElementById("highScore");
 var restartBtn = document.getElementById("restartGame");
@@ -8,7 +8,7 @@ var welcomeSection = document.getElementById("welcome");
 var quizSection = document.getElementById("quiz");
 var gameOverSection = document.getElementById("gameOver");
 var leaderboardSection = document.getElementById("leaderboard");
-var secondsLeft = 60;
+var secondsLeft;
 var questionHead = document.getElementById("question");
 var timerElement = document.getElementById("countdown");
 var resultGame = document.getElementById("result");
@@ -41,10 +41,12 @@ var quiz = new Quiz(questions);
 // sets the timer
 function startTimer() {
     setTimer();
+
 }
 
 //calls the timer and makes time run our and showscores once quiz is finished or time runs out
 function setTimer() {
+        secondsLeft = 60;
     var countdown = setInterval(function () {
         secondsLeft--;
         timerElement.textContent = " " + secondsLeft;
@@ -54,7 +56,6 @@ function setTimer() {
         }
     }, 1000);
 }
-
 
 // quiz functionality begins and sets the score, loads questions and resets question index
 function Quiz(questions) {
@@ -86,7 +87,6 @@ Quiz.prototype.guess = function(answer) {
 Quiz.prototype.isEnded = function() {
     return this.questionIndex === this.questions.length;
 };
-
 
 //pulls in parameters
 function Question(text, choices, answer) {
@@ -132,8 +132,6 @@ function guess(id, guess) {
     }
 };
 
-
-
 //function when answer is right
 function showAnswerRight(){
   console.log("the answer is right");
@@ -158,6 +156,27 @@ function showScores() {
     quizSection.style.display ="none";
     result.textContent = " " + quiz.score + " out of 5";
 };
+
+function addScore() {
+    userNameInput = document.getElementById("initials").value
+
+    // create a new object with name and score keys
+    var newScore = {
+        name: userNameInput,
+        score: score
+    };
+    // check if there are scores in local storage first and take value
+    //if not, make a blank array
+    var quizScore = localStorage.getItem("quizScore")
+    if (quizScore) { //New score bigger than previous
+        var highScore = JSON.parse(quizScore).score;
+        if (score < highScore) {
+            return
+
+        }
+    }
+    localStorage.setItem("quizScore", JSON.stringify(newScore));
+}
 
 //removes other sections from showing
 function init(){
