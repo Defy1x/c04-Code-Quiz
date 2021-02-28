@@ -94,6 +94,10 @@ p{
   color: #52ae65;
 }
 
+#result{
+  padding-bottom: 10px;
+}
+
 header section{
   height: 50px;
 }
@@ -163,6 +167,7 @@ header h1 {
 }
 
 #highScoreTable{
+  color: #3aa9e1;
   padding-bottom: 20px;
   font-size: 20px;
   text-decoration: underline;
