@@ -27,6 +27,7 @@ var userNameInput;
 var score = 0
 var secondsLeft;
 var questionNumber = -1;
+var secondsLeft = 0;
 
 // var submitScoreElement = document.querySelector("#submit-score");
 // var userScoreElement = document.getElementById("user-score");
@@ -44,20 +45,20 @@ var questions = [
 var quiz = new Quiz(questions);
 
 // sets the timer
-function startTimer() {
-    setTimer();
-
-}
 
 //calls the timer and makes time start coundown and showscores once quiz is finished or time runs out
 function setTimer() {
         secondsLeft = 60;
     var countdown = setInterval(function () {
-        secondsLeft--;
         timerElement.textContent = " " + secondsLeft;
-        if (secondsLeft <= 0 || questionNumber === questions.length) {
+        if (secondsLeft > 0){
+          secondsLeft--;
+          console.log(secondsLeft)
+        }
+        else if (secondsLeft <= 0 || questionNumber === questions.length) {
             clearInterval(countdown);
             setTimeout(showScores, 500);
+            console.log(secondsLeft)
         }
     }, 1000);
 }
@@ -201,7 +202,7 @@ function startGame(){
   welcomeSection.style.display ="none";
   quizSection.style.display="block";
   populate();
-  startTimer();
+  setTimer();
 };
 
 //function to viewleaderboard and hide everything else
@@ -216,6 +217,7 @@ function viewLeaderboard(){
   timerDisplay.style.display="none";
 };
 
+//reloads the webpage on save
 function reload(){
   location.reload();
 }
