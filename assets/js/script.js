@@ -24,6 +24,7 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
+var quizScore = [];
 var userNameInput;
 var highScoresArray;
 var score = 0;
@@ -158,7 +159,8 @@ function showScores() {
 
 
 function addScore() {
-
+  // //gets the json file
+  var quizScore = localStorage.getItem("quizScore");
 
     if (initials.value === ""){
     var anonymousAnimals = ["Aardvark", "Beaver", "Bunny", "Chinchilla", "Cat", "Giraffe", "Lion", "Moose", "Otter", "Porcupine", "Raccoon", "Squirrel", "Sheep", "Woodchuck", "Zebra"]
@@ -244,8 +246,17 @@ function viewLeaderboard(){
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
   var leaders = JSON.parse(localStorage.getItem("quizScore"));
-  highScoreTable.textContent = leaders.name + ": " + leaders.score;
+  if(leaders === null){
+    console.log ("leaders are not existent");
+    highScoreTable.textContent = "There are leaders yet, play some games! ";
+    return;
+  }
+  else if (true) {
+    highScoreTable.textContent = leaders.name + ": " + leaders.score;
+  }
+
   console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
+
 };
 
 //reloads the webpage on save
