@@ -28,7 +28,6 @@ var score = 0
 var secondsLeft;
 var questionNumber = -1;
 var secondsLeft = 0;
-
 // var submitScoreElement = document.querySelector("#submit-score");
 // var userScoreElement = document.getElementById("user-score");
 // var userNameInput;
@@ -43,8 +42,6 @@ var questions = [
 
 //loads in new quiz questions and creates a new quiz
 var quiz = new Quiz(questions);
-
-// sets the timer
 
 //calls the timer and makes time start coundown and showscores once quiz is finished or time runs out
 function setTimer() {
@@ -61,11 +58,6 @@ function setTimer() {
           setTimeout(showScores, 500);
           console.log(secondsLeft)
         }
-        // else if (secondsLeft <= 0 || questionNumber === questions.length) {
-        //     clearInterval(countdown);
-        //     setTimeout(showScores, 500);
-        //     console.log(secondsLeft)
-        // }
     }, 1000);
 }
 
@@ -191,7 +183,7 @@ function addScore() {
         }
     }
     localStorage.setItem("quizScore", JSON.stringify(newScore));
-}
+};
 
 //removes other sections from showing
 function init(){
@@ -200,7 +192,7 @@ function init(){
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
   leaderboard.style.display="none";
-}
+};
 
 //function to start quiz and start timer
 function startGame(){
@@ -225,7 +217,7 @@ function viewLeaderboard(){
 //reloads the webpage on save
 function reload(){
   location.reload();
-}
+};
 
 //
 startBtn.addEventListener("click", startGame);
