@@ -12,36 +12,49 @@
   <div class ="container">
     <header>
       <section>
-        <button type="button" class="highscores">High Scores</button>
+        <button type="button" id="highScore">High Scores</button>
+      </section>
+      <section>
+       <p>Time Remaining:<span id="countdown"></span></p>
       </section>
       <section>
         <h1>JavaScript Coding Quiz</h1>
       </section>
-      <section>
-       <p>Time Remaining:<span id="seconds">0</span></p>
-      </section>
     </header>
-    <main id="quiz">
-        <section class="welcome">
+    <main>
+        <section id="welcome">
+          <h2>Test your coding knowledge!</h2>
+          <p>Welcome to the coding quiz where you will be given 60 seconds to answer 5 questions.
+          <p>For every question you get wrong you will be deducted 5 seconds from the timer.</p>
+          <p>Do your best to answer all the questions correctly in time. Best of luck!</p>
+          <button id="startBtn">Start Game</button>
         </section>
-        <section id="question">
+        <section id="quiz">
+          <div id="question"></div>
+          <div class="buttons">
+            <button id="btn0"><span id="choice0"></span></button>
+            <button id="btn1"><span id="choice1"></span></button>
+            <button id="btn2"><span id="choice2"></span></button>
+            <button id="btn3"><span id="choice3"></span></button>
+          </div>
+          <div id="answer"></div>
+          <div id="progress"></div>
         </section>
-        <section class="buttons">
-          <button id="btn0"><span id="choice0"></span></button>
-          <button id="btn1"><span id="choice1"></span></button>
-          <button id="btn2"><span id="choice2"></span></button>
-          <button id="btn3"><span id="choice3"></span></button>
+        <section id="gameOver">
+          <h2>Your Result</h2>
+          <p>You got <span id="result"></p>
+          <button id="submitBtn">Submit</button>
+          <button id="restartGame">Try Again</button>
         </section>
-        <section class="answer">
-        </section>
-        <section id="progress">
-        </section>
-        <section class="gameOver">
-        </section>
-        <section class="leaderboard">
+        <section id="leaderboard">
+          <div class="leaderboard-placeholder">
+            <ol>
+            </ol>
+          </div>
+          <button id="backMain">Return to Main Menu</button>
         </section>
       </main>
     </div>
   <script src="./assets/js/script.js"></script>
-  </body>
+</body>
 </html>
