@@ -26,6 +26,7 @@ var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
 var quizScore = JSON.parse(localStorage.getItem("quizScore"))|| [] ;
 var userNameInput;
+var highScoresArray;
 var score = 0;
 var highScore = 0;
 var secondsLeft;
@@ -156,13 +157,6 @@ function showScores() {
     result.textContent = " " + quiz.score + " out of 5 correct";
 };
 
-// var liMaker = function(text) {
-//     console.log(text)
-//     var li = document.createElement("li");
-//     li.textContent = text.user + " " + text.score + "%";
-//     highScoreLeaders.appendChild(li);
-//     console.log("test");
-// };
 
 function addScore() {
     userNameInput = document.getElementById("initials").value
@@ -194,6 +188,25 @@ function addScore() {
     //
 };
 
+// var liMaker = function(text) {
+//     var quizScore= JSON.parse(localStorage.getItem("quizScore"));
+//     var li = document.createElement("li");
+//     li.textContent = quizScore.name + " : " + quizScore.score;
+//     highScoreLeaders.appendChild(li);
+//     console.log(quizScore.name + " is the users name " + quizScore.score + " is the score in the leaderboard view");
+//     console.log("test");
+// };
+
+// function buildLeaderBoard(){
+//   console.log("this is a test of build leaderboard functionality")
+//   var data= JSON.parse(localStorage.getItem("quizScore"));
+//
+//   data.forEach(function(quizScore) {
+//     liMaker(quizScore);
+//   });
+// }
+
+
 //removes other sections from showing on init
 function init(){
   welcomeSection.style.display ="block";
@@ -211,6 +224,7 @@ function startGame(){
   setTimer();
 };
 
+//function to viewleaderboard and hide everything else
 //function to viewleaderboard and hide everything else
 function viewLeaderboard(){
   welcomeSection.style.display ="none";
