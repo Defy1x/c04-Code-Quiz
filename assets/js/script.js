@@ -55,11 +55,19 @@ function setTimer() {
           secondsLeft--;
           console.log(secondsLeft)
         }
-        else if (secondsLeft <= 0 || questionNumber === questions.length) {
-            clearInterval(countdown);
-            setTimeout(showScores, 500);
-            console.log(secondsLeft)
+        if (secondsLeft <=0) {
+          clearInterval(countdown);
+          setTimeout(showScores, 500);
         }
+        if (questionNumber === questions.length){
+          clearInterval(countdown);
+          showScores();
+        }
+        // else if (secondsLeft <= 0 || questionNumber === questions.length) {
+        //     clearInterval(countdown);
+        //     setTimeout(showScores, 500);
+        //     console.log(secondsLeft)
+        // }
     }, 1000);
 }
 
