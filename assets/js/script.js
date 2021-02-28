@@ -161,6 +161,7 @@ function showScores() {
 
 function addScore() {
     userNameInput = document.getElementById("initials").value
+    welcomeSection.style.display ="none";
     leaderboard.style.display="block";
     gameOverSection.style.display ="none";
 
@@ -169,8 +170,6 @@ function addScore() {
         name: userNameInput,
         score: quiz.score
     };
-    console.log(userNameInput);
-    console.log(quiz.score);
     // check if there are scores in local storage first and take value
     //if not, make a blank array
     var quizScore = localStorage.getItem("quizScore")
@@ -209,7 +208,7 @@ function viewLeaderboard(){
   gameOverSection.style.display ="none";
   leaderboard.style.display="block";
   timerElement.style.display="none";
-  welcomeText.style.display="none";
+  welcomeText.style.display="block";
 };
 
 function reload(){
@@ -224,23 +223,9 @@ backMainBtn.addEventListener("click",reload);
 submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
     addScore();
-    var quizScore = JSON.parse(localStorage.getItem("quizScore"))
-    highScoreTable.textContent = quizScore.name + " : " + quiz.score;
+    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+    highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
 });
 
 //load first page and hide other sections
 init();
-
-// //displays welcome text - add for leaderboard
-// function welcomeText() {
-//     var welcomeHTML = "<h2>Test your coding knowledge!</h2>";
-//     welcomeHTML += "<p id='bodytext'> </p>";
-//     welcomeHTML += "<button id='startBtn'>Start Game</button>";
-//     var element = document.getElementById("quiz");
-//     element.innerHTML = welcomeHTML;
-//     test();
-//     // populate();
-// gameOverHTML += "<h2 id='score'> Your score: " + quiz.score + "</h2>";
-// var element = document.getElementById("quiz");
-// element.innerHTML = gameOverHTML;
-// };
