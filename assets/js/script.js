@@ -24,7 +24,6 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
-var quizScore = JSON.parse(localStorage.getItem("quizScore"))|| [] ;
 var userNameInput;
 var highScoresArray;
 var score = 0;
@@ -177,8 +176,12 @@ function addScore() {
     };
     console.log(newScore.name + " is the users name " + newScore.score + " is the new users score" )
 
+    // quizScore.push(newScore);
+
     // //gets the json file
     var quizScore = localStorage.getItem("quizScore")
+
+
     // updates the file
     localStorage.setItem("quizScore", JSON.stringify(newScore));
     //pulls the new object
@@ -240,9 +243,9 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
-  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
-  highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
-  console.log(quizScore.name + " is the users name " + quizScore.score + " is the score in the leaderboard view");
+  var leaders = JSON.parse(localStorage.getItem("quizScore"));
+  highScoreTable.textContent = leaders.name + ": " + leaders.score;
+  console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
 };
 
 //reloads the webpage on save
