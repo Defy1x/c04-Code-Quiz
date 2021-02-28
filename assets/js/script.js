@@ -31,11 +31,6 @@ var highScore = 0;
 var secondsLeft;
 var questionNumber = -1;
 var secondsLeft = 0;
-// var submitScoreElement = document.querySelector("#submit-score");
-// var userScoreElement = document.getElementById("user-score");
-// var userNameInput;
-
-// console.log(quizScore);
 
 var questions = [
     new Question("Hyper Text Markup Language Stand For?", ["JavaScript", "XHTML","CSS", "HTML"], "HTML"),
@@ -161,13 +156,13 @@ function showScores() {
     result.textContent = " " + quiz.score + " out of 5 correct";
 };
 
-var liMaker = function(text) {
-    console.log(text)
-    var li = document.createElement("li");
-    li.textContent = text.user + " " + text.score + "%";
-    highScoreLeaders.appendChild(li);
-    console.log("test");
-};
+// var liMaker = function(text) {
+//     console.log(text)
+//     var li = document.createElement("li");
+//     li.textContent = text.user + " " + text.score + "%";
+//     highScoreLeaders.appendChild(li);
+//     console.log("test");
+// };
 
 function addScore() {
     userNameInput = document.getElementById("initials").value
@@ -188,6 +183,7 @@ function addScore() {
     var quizScore = JSON.parse(localStorage.getItem("quizScore"));
 
     console.log(quizScore);
+
     // calls the leaderboard functionality
     viewLeaderboard();
     //
