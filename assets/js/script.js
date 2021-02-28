@@ -247,7 +247,6 @@ function viewLeaderboard(){
   timerDisplay.style.display="none";
   var leaders = JSON.parse(localStorage.getItem("quizScore"));
   if(leaders === null){
-    console.log ("leaders are not existent");
     highScoreTable.textContent = "There are no leaders yet, play some games! ";
     return;
   }
