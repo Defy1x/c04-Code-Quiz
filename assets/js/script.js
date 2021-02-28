@@ -183,26 +183,26 @@ function addScore() {
 
     // updates the file
     localStorage.setItem("quizScoreLS", JSON.stringify(quizScore));
-    //pulls the new object
-    var quizScore = JSON.parse(localStorage.getItem("quizScoreLS"));
-
-    console.log(quizScore);
-
-    viewLeaderboardOnEndClick();
+    // //pulls the new object
+    // var quizScore = JSON.parse(localStorage.getItem("quizScoreLS"));
+    viewLeaderboardOnClick();
 };
 
 function grabDataforLeaderBoard(){
-  var leaders = JSON.parse(localStorage.getItem("quizScore"));
-  console.log(quizScore);
+  var leaders = JSON.parse(localStorage.getItem("quizScoreLS"));
+  console.log(leaders);
   if(leaders === null){
     highScoreTable.textContent = "There are no leaders yet, play some games! ";
     return;
   }
-   else if (true){
-    highScoreTable.textContent = leaders.name + " : " + leaders.score;
-    console.log("i am trying to write this score")
+  else if (leaders){
+     leaders.sort((a, b) => b.score - a.score);
+           for (var i = 0; (i < 1); i++) {
+               highScoreTable.textContent = leaders[i].name + ' : ' + leaders[i].score;
+           }
+      console.log("i hope this works!")
   }
-  console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
+  console.log(leaders);
 }
 
 
@@ -246,7 +246,7 @@ function startGame(){
 };
 
 //function to viewleaderboard and hide everything else
-function viewLeaderboardOnMenuClick(){
+function viewLeaderboardOnClick(){
   welcomeSection.style.display ="none";
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
@@ -257,17 +257,6 @@ function viewLeaderboardOnMenuClick(){
   timerDisplay.style.display="none";
   grabDataforLeaderBoard();
 };
-
-function viewLeaderboardOnEndClick(){
-  welcomeSection.style.display ="none";
-  quizSection.style.display ="none";
-  gameOverSection.style.display ="none";
-  leaderboard.style.display="block";
-  timerElement.style.display="none";
-  welcomeText.style.display="block";
-  highScoresBtn.style.display="none";
-  timerDisplay.style.display="none";
-}
 
 //reloads the webpage on save
 function reload(){
@@ -281,7 +270,7 @@ function resetForm() {
 
 //add event listeners here
 startBtn.addEventListener("click", startGame);
-highScoresBtn.addEventListener("click", viewLeaderboardOnMenuClick);
+highScoresBtn.addEventListener("click", viewLeaderboardOnClick);
 restartBtn.addEventListener("click", reload);
 backMainBtn.addEventListener("click",reload);
 submitBtn.addEventListener("click", function (event) {
