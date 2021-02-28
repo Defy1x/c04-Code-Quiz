@@ -205,11 +205,15 @@ function viewLeaderboard(){
   welcomeText.style.display="none";
 };
 
+function reload(){
+  location.reload();
+}
+
 //
 startBtn.addEventListener("click", startGame);
 highScoresBtn.addEventListener("click", viewLeaderboard);
-restartBtn.addEventListener("click", init);
-backMainBtn.addEventListener("click", init);
+restartBtn.addEventListener("click", reload);
+backMainBtn.addEventListener("click",reload);
 
 //load first page and hide other sections
 init();
