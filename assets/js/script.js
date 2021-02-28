@@ -24,8 +24,7 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
-var highScoresArray = JSON.parse(localStorage.getItem("quizScore"))|| [] ;
-// var highScoresArray;
+var quizScore = JSON.parse(localStorage.getItem("quizScore"))|| [] ;
 var userNameInput;
 var score = 0;
 var highScore = 0;
@@ -35,6 +34,8 @@ var secondsLeft = 0;
 // var submitScoreElement = document.querySelector("#submit-score");
 // var userScoreElement = document.getElementById("user-score");
 // var userNameInput;
+
+console.log(quizScore);
 
 var questions = [
     new Question("Hyper Text Markup Language Stand For?", ["JavaScript", "XHTML","CSS", "HTML"], "HTML"),
@@ -152,6 +153,7 @@ function showProgress() {
     element.innerHTML = "Question " + currentQuestionNumber + " of " + quiz.questions.length;
 };
 
+//function to show the scores and end screen
 function showScores() {
     gameOverSection.style.display ="block";
     quizSection.style.display ="none";
@@ -169,11 +171,6 @@ var liMaker = function(text) {
 
 function addScore() {
     userNameInput = document.getElementById("initials").value
-    welcomeSection.style.display ="none";
-    leaderboard.style.display="block";
-    highScoresBtn.style.display="none";
-    timerDisplay.style.display="none";
-    gameOverSection.style.display ="none";
 
     console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
@@ -183,14 +180,17 @@ function addScore() {
     };
     console.log(newScore.score + " is the new users score")
 
-    // check if there are scores in local storage first and take value
-    var quizScore = localStorage.getItem("quizScore");
-
     localStorage.setItem("quizScore", JSON.stringify(newScore));
+
+    //gets the json file
+    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+
+    // calls the leaderboard functionality
+    viewLeaderboard();
+    //
 };
 
-
-//removes other sections from showing
+//removes other sections from showing on ititialization
 function init(){
   welcomeSection.style.display ="block";
   welcomeText.style.display="block";
@@ -203,7 +203,6 @@ function init(){
 function startGame(){
   welcomeSection.style.display ="none";
   quizSection.style.display="block";
-  // HTMLFormElement.reset()
   populate();
   setTimer();
 };
@@ -218,9 +217,11 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
-  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+  // for (var i = 0; (i < 1); i++) {
+  //        highScoreTable.textContent = quizScore[i].name + " : " + quizScore[i].score;
+  //    }
   highScoreTable.textContent = quizScore.name + ":" + quizScore.score;
-  console.log(quizScore.score + "is the score in the leaderboard view");
+  console.log(quizScore.score + " is the score in the leaderboard view");
 };
 
 //reloads the webpage on save
@@ -233,7 +234,7 @@ function resetForm() {
   document.getElementById("userForm").reset();
 }
 
-//
+//add event listeners here
 startBtn.addEventListener("click", startGame);
 highScoresBtn.addEventListener("click", viewLeaderboard);
 restartBtn.addEventListener("click", reload);
@@ -242,10 +243,6 @@ submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
     addScore();
     resetForm();
-    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
-    console.log(quizScore.score + " is the score that will get added to the button on submit");
-    highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
-    console.log(highScoresArray + "this is a test");
 });
 
 //load first page and hide other sections
