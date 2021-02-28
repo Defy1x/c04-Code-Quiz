@@ -10,9 +10,6 @@ body {
   border: 2px solid #cbcbcb;
 }
 
-header{
-}
-
 h1 {
   font-family: "sans-serif";
    background-color: yellow;
@@ -79,6 +76,7 @@ p{
 }
 
 #progress {
+  padding-top: 20px;
     font-size: 18px;
 }
 #answer{
@@ -92,4 +90,20 @@ p{
   font size: 18px;
   text-align: center;
   color: #98FB98;
+}
+
+header section{
+  height: 50px;
+}
+
+header h1 {
+  height: 60px;
+}
+
+#highScore{
+  float: left;
+}
+
+#timer{
+  float:right;
 }

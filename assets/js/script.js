@@ -4,6 +4,7 @@ var highScoresBtn = document.getElementById("highScore");
 var restartBtn = document.getElementById("restartGame");
 var submitBtn = document.querySelector("button.submitBtn")
 var backMainBtn = document.getElementById("backMain");
+var welcomeText = document.getElementById("welcome-block");
 var welcomeSection = document.getElementById("welcome");
 var quizSection = document.getElementById("quiz");
 var gameOverSection = document.getElementById("gameOver");
@@ -179,6 +180,7 @@ function addScore() {
 //removes other sections from showing
 function init(){
   welcomeSection.style.display ="block";
+  welcomeText.style.display="block";
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
   leaderboard.style.display="none";
@@ -200,6 +202,7 @@ function viewLeaderboard(){
   gameOverSection.style.display ="none";
   leaderboard.style.display="block";
   timerElement.style.display="none";
+  welcomeText.style.display="none";
 };
 
 //
