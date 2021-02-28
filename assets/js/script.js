@@ -251,7 +251,7 @@ function viewLeaderboard(){
     return;
   }
   else if (true) {
-    highScoreTable.textContent = leaders.name + ": " + leaders.score;
+    highScoreTable.textContent = leaders.name + " : " + leaders.score;
   }
 
   console.log(leaders.name + " is the LEADERS name " + leaders.score + " is the score in the leaderboard view");
