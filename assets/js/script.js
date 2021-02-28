@@ -2,14 +2,14 @@
 var startBtn = document.getElementById("startBtn");
 var highScoresBtn = document.getElementById("highScore");
 var restartBtn = document.getElementById("restartGame");
-var submitBtn = document.querySelector("button.submitBtn")
+var submitBtn = document.getElementById("submitBtn")
 var backMainBtn = document.getElementById("backMain");
 var welcomeText = document.getElementById("welcome-block");
+var highScoreLeaders = document.getElementById("highScoreTable");
 var welcomeSection = document.getElementById("welcome");
 var quizSection = document.getElementById("quiz");
 var gameOverSection = document.getElementById("gameOver");
 var leaderboardSection = document.getElementById("leaderboard");
-var secondsLeft;
 var questionHead = document.getElementById("question");
 var timerElement = document.getElementById("countdown");
 var resultGame = document.getElementById("result");
@@ -22,6 +22,9 @@ var answerBtn0 = document.querySelector("#btn0")
 var answerBtn1 = document.querySelector("#btn1")
 var answerBtn2 = document.querySelector("#btn2")
 var answerBtn3 = document.querySelector("#btn3")
+var userNameInput;
+var score = 0
+var secondsLeft;
 var questionNumber = -1;
 
 // var submitScoreElement = document.querySelector("#submit-score");
@@ -45,7 +48,7 @@ function startTimer() {
 
 }
 
-//calls the timer and makes time run our and showscores once quiz is finished or time runs out
+//calls the timer and makes time start coundown and showscores once quiz is finished or time runs out
 function setTimer() {
         secondsLeft = 60;
     var countdown = setInterval(function () {
@@ -105,7 +108,6 @@ Question.prototype.isCorrectAnswer = function(choice) {
 function populate() {
     if(quiz.isEnded()) {
         showScores();
-        console.log(secondsLeft)
     }
     else {
         // show question
@@ -159,20 +161,25 @@ function showScores() {
 
 function addScore() {
     userNameInput = document.getElementById("initials").value
+    leaderboard.style.display="block";
+    gameOverSection.style.display ="none";
 
     // create a new object with name and score keys
     var newScore = {
         name: userNameInput,
-        score: score
+        score: quiz.score
     };
+    console.log(userNameInput);
+    console.log(quiz.score);
     // check if there are scores in local storage first and take value
     //if not, make a blank array
     var quizScore = localStorage.getItem("quizScore")
-    if (quizScore) { //New score bigger than previous
+
+    //New score bigger than previous
+    if (quizScore) {
         var highScore = JSON.parse(quizScore).score;
         if (score < highScore) {
             return
-
         }
     }
     localStorage.setItem("quizScore", JSON.stringify(newScore));
@@ -189,7 +196,6 @@ function init(){
 
 //function to start quiz and start timer
 function startGame(){
-  console.log("I am being clicked");
   welcomeSection.style.display ="none";
   quizSection.style.display="block";
   populate();
@@ -215,6 +221,12 @@ startBtn.addEventListener("click", startGame);
 highScoresBtn.addEventListener("click", viewLeaderboard);
 restartBtn.addEventListener("click", reload);
 backMainBtn.addEventListener("click",reload);
+submitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    addScore();
+    var quizScore = JSON.parse(localStorage.getItem("quizScore"))
+    highScoreTable.textContent = quizScore.name + " : " + quiz.score;
+});
 
 //load first page and hide other sections
 init();
