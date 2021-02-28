@@ -51,17 +51,15 @@ function setTimer() {
         secondsLeft = 60;
     var countdown = setInterval(function () {
         timerElement.textContent = " " + secondsLeft;
-        if (secondsLeft > 0){
+        if (questionNumber < 4){
           secondsLeft--;
           console.log(secondsLeft)
+          console.log(questionNumber)
         }
-        if (secondsLeft <=0) {
+        if (secondsLeft <=0 || questionNumber === questions.length) {
           clearInterval(countdown);
           setTimeout(showScores, 500);
-        }
-        if (questionNumber === questions.length){
-          clearInterval(countdown);
-          showScores();
+          console.log(secondsLeft)
         }
         // else if (secondsLeft <= 0 || questionNumber === questions.length) {
         //     clearInterval(countdown);
@@ -93,7 +91,7 @@ Quiz.prototype.guess = function(answer) {
       showAnswerWrong();
       secondsLeft -= 5;
     }
-
+    questionNumber++;
     this.questionIndex++;
 };
 
@@ -131,7 +129,6 @@ function populate() {
             element.innerHTML = choices[i];
             guess("btn" + i, choices[i]);
         }
-
         showProgress();
     }
 };
