@@ -180,11 +180,14 @@ function addScore() {
     };
     console.log(newScore.name + " is the users name " + newScore.score + " is the new users score" )
 
-
-    var quizScore = localStorage.getItem("quizScore")
     // //gets the json file
-    // var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+    var quizScore = localStorage.getItem("quizScore")
+    // updates the file
     localStorage.setItem("quizScore", JSON.stringify(newScore));
+    //pulls the new object
+    var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+
+    console.log(quizScore);
     // calls the leaderboard functionality
     viewLeaderboard();
     //
@@ -219,7 +222,7 @@ function viewLeaderboard(){
   timerDisplay.style.display="none";
   var quizScore = JSON.parse(localStorage.getItem("quizScore"));
   highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
-  console.log(quizScore.score + " is the score in the leaderboard view");
+  console.log(quizScore.name + " is the users name " + quizScore.score + " is the score in the leaderboard view");
 };
 
 //reloads the webpage on save
