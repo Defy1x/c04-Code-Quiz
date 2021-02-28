@@ -95,7 +95,7 @@ p{
   color: #d143c9;
 }
 
-#result{
+#enter{
   padding-bottom: 10px;
 }
 
@@ -178,6 +178,10 @@ header h1 {
   height: 30px;
 }
 
+#result{
+  color: #d143c9;
+}
+
 @media (max-width: 550px) {
   .container{
     width: 400px;
@@ -193,6 +197,9 @@ header h1 {
     font-size: 20px;
   }
   #initials{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+  }
+  #end{
+    text-align: left;
   }
 }

@@ -56,7 +56,7 @@ function setTimer() {
           console.log(secondsLeft)
           console.log(questionNumber)
         }
-        if (secondsLeft <=0 || questionNumber === questions.length) {
+        if (secondsLeft <=0 || questionNumber === quiz.questions.length) {
           clearInterval(countdown);
           setTimeout(showScores, 500);
           console.log(secondsLeft)
@@ -163,7 +163,7 @@ function showScores() {
     gameOverSection.style.display ="block";
     quizSection.style.display ="none";
     countdown.style.display ="none";
-    result.textContent = " " + quiz.score + " out of 5 answers correct";
+    result.textContent = " " + quiz.score + " out of 5 correct";
 };
 
 function addScore() {
