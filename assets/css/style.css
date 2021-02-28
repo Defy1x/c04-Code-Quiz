@@ -182,6 +182,10 @@ header h1 {
   color: #d143c9;
 }
 
+#userForm{
+  padding-bottom: 10px;
+}
+
 @media (max-width: 550px) {
   .container{
     width: 400px;

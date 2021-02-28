@@ -6,6 +6,7 @@ var submitBtn = document.getElementById("submitBtn")
 var backMainBtn = document.getElementById("backMain");
 var welcomeText = document.getElementById("welcome-block");
 var timerDisplay = document.getElementById("timer");
+var formInput = document.getElementById("initials");
 var highScoreLeaders = document.getElementById("highScoreTable");
 var welcomeSection = document.getElementById("welcome");
 var quizSection = document.getElementById("quiz");
@@ -50,13 +51,10 @@ function setTimer() {
         timerElement.textContent = " " + secondsLeft;
         if (questionNumber < 4){
           secondsLeft--;
-          console.log(secondsLeft)
-          console.log(questionNumber)
         }
         if (secondsLeft <=0 || questionNumber === quiz.questions.length) {
           clearInterval(countdown);
           setTimeout(showScores, 500);
-          console.log(secondsLeft)
         }
     }, 1000);
 }
@@ -166,6 +164,8 @@ function addScore() {
     timerDisplay.style.display="none";
     gameOverSection.style.display ="none";
 
+    console.log(userNameInput);
+
     // create a new object with name and score keys
     var newScore = {
         name: userNameInput,
@@ -185,6 +185,11 @@ function addScore() {
     localStorage.setItem("quizScore", JSON.stringify(newScore));
 };
 
+function getHighScores(){
+  var quizScore = JSON.parse(localStorage.getItem("quizScore"));
+  console.log("test");
+}
+
 //removes other sections from showing
 function init(){
   welcomeSection.style.display ="block";
@@ -192,12 +197,14 @@ function init(){
   quizSection.style.display ="none";
   gameOverSection.style.display ="none";
   leaderboard.style.display="none";
+
 };
 
 //function to start quiz and start timer
 function startGame(){
   welcomeSection.style.display ="none";
   quizSection.style.display="block";
+  // HTMLFormElement.reset()
   populate();
   setTimer();
 };
@@ -212,6 +219,7 @@ function viewLeaderboard(){
   welcomeText.style.display="block";
   highScoresBtn.style.display="none";
   timerDisplay.style.display="none";
+  getHighScores();
 };
 
 //reloads the webpage on save
@@ -219,6 +227,9 @@ function reload(){
   location.reload();
 };
 
+function resetForm() {
+  document.getElementById("userForm").reset();
+}
 //
 startBtn.addEventListener("click", startGame);
 highScoresBtn.addEventListener("click", viewLeaderboard);
@@ -227,6 +238,7 @@ backMainBtn.addEventListener("click",reload);
 submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
     addScore();
+    resetForm();
     var quizScore = JSON.parse(localStorage.getItem("quizScore"));
     highScoreTable.textContent = quizScore.name + ": " + quizScore.score;
 });
