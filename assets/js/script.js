@@ -167,6 +167,11 @@ function showScores() {
 function addScore() {
     userNameInput = document.getElementById("initials").value
 
+    if (initials.value === ""){
+    var anonymousAnimals = ["Aardvark", "Beaver", "Bunny", "Chinchilla", "Cat", "Giraffe", "Lion", "Moose", "Otter", "Porcupine", "Raccoon", "Squirrel", "Sheep", "Woodchuck", "Zebra"]
+    userNameInput = "Happy " + anonymousAnimals[Math.floor(Math.random()*anonymousAnimals.length)];
+  }
+
     console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
     var newScore = {
