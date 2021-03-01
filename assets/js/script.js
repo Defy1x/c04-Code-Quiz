@@ -171,13 +171,11 @@ function addScore() {
     }
     let score = quiz.score
 
-    console.log(userNameInput + " has been entered as users name");
     // create a new object with name and score keys
     var newScore = {
         name: userNameInput,
         score: score,
     };
-    console.log(newScore.name + " is the users name " + newScore.score + " is the new users score" )
 
      quizScore.push(newScore);
 
@@ -189,43 +187,19 @@ function addScore() {
 
 function grabDataforLeaderBoard(){
   var leaders = JSON.parse(localStorage.getItem("quizScoreLS"));
-  console.log(leaders);
   if(leaders === null){
     highScoreTable.textContent = "There are no leaders yet, play some games! ";
     return;
   }
   else if (leaders){
      leaders.sort((a, b) => b.score - a.score);
-     //    for (var i = 0; i < leaders.length; i++){
-     //        highScoreTable.innerHTML = "<li>" + leaders[i].name + " : " + leaders[i].score + "</li>";
      for (var i = 0; (i < leaders.length) && (i < 10); i++) {
       var list = document.createElement('li');
       list.textContent = leaders[i].name + " : " + leaders[i].score;
       highScoreLeaders.appendChild(list);
       }
-      console.log("i hope this works!")
   }
-  console.log(leaders);
 }
-
-
-// var liMaker = function(text) {
-//     var quizScore= JSON.parse(localStorage.getItem("quizScore"));
-//     var li = document.createElement("li");
-//     li.textContent = quizScore.name + " : " + quizScore.score;
-//     highScoreLeaders.appendChild(li);
-//     console.log(quizScore.name + " is the users name " + quizScore.score + " is the score in the leaderboard view");
-//     console.log("test");
-// };
-
-// function buildLeaderBoard(){
-//   console.log("this is a test of build leaderboard functionality")
-//   var data= JSON.parse(localStorage.getItem("quizScore"));
-//
-//   data.forEach(function(quizScore) {
-//     liMaker(quizScore);
-//   });
-// }
 
 //removes other sections from showing on init
 function init(){
